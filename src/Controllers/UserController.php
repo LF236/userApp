@@ -10,6 +10,17 @@ class UserController {
         $this->userService = new UserService();
     }
 
+    public function index() {
+        $html = __DIR__ . '/../Views/index.html';
+        if(file_exists($html)) {
+            header('Content-Type: text/html');
+            echo file_get_contents($html);
+        } else {
+            http_response_code(404);
+            echo '404 Not Found';
+        }
+    }
+
     public function get() {
         $users = $this->userService->getAll();
         header('Content-Type: application/json');
