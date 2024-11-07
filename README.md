@@ -33,7 +33,7 @@ Es este proceso **NO** es necesario tener instalado **MYSQL** ni **PHP** instala
 1. Copiar el archivo .env.template a .env
 2. Llenar las variables de entorno
 ```
-DB_HOST=db Host de la base de datos (IP del servidor) Como se usa Docker, el valor debe ser **db**
+DB_HOST=db Host de la base de datos (IP del servidor) Como se usa Docker, el valor debe ser "db" (sin comillas)
 DB_USERNAME=Nombre del usuario que tenga acceso a la base de datos
 DB_PASSWORD=Contrañena de la base de datos
 DB_NAME=Nombre de la base de datos (La que se tenga configurada EJ. test)
