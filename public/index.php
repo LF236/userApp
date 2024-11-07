@@ -37,7 +37,7 @@ if(file_exists($file) && is_file($file)) {
         header('Content-Type: ' . $contentTypes[$fileExtension]);
     } else {
         header('Content-Type: application/octet-stream');
-    }
+    }   
 
     // Leer y enviar el archivo
     readfile($file);

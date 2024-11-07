@@ -20,4 +20,12 @@ class UserService {
     public function getAll() {
         return $this->userRepository->getAllUsers();
     }
+    
+    public function getUserById($id) {
+        return $this->userRepository->getUserById($id);
+    }
+
+    public function updateUser($id, UserCreateDTO $user) {
+        return $this->userRepository->updateUserById($id, $user);
+    }
 }

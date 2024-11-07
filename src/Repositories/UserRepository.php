@@ -48,7 +48,24 @@ class UserRepository {
 
     public function getAllUsers() {
         $db = new Database();
-        $sql = 'SELECT * FROM users';
+        $sql = 'SELECT * FROM users ORDER BY id DESC';
         return $db->query($sql);
+    }
+
+    public function updateUserById($id, $data) {
+        $db = new Database();
+        $userFound = $this->getUserById($id);
+        if(!$userFound) {
+            return false;
+        }
+        $sql = 'UPDATE users SET userName = :userName, email = :email, firstName = :firstName, lastName = :lastName WHERE id = :id';
+        $params = [
+            'id' => $id,
+            'userName' => $data->name,
+            'email' => $data->email,
+            'firstName' => $data->firstName,
+            'lastName' => $data->lastName
+        ];
+        return $db->exec($sql, $params);
     }
 }
