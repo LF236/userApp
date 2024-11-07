@@ -17,3 +17,24 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - user-network
+  php:
+    image: php:8.1-apache
+    container_name: user-php
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - user-network
+    restart: always
+    command: bash -c "docker-php-ext-install pdo pdo_mysql && php -S 0.0.0.0:8000 -t /var/www/html/public"
+    environment:
+      PHP_INI_DIR: "/usr/local/etc/php"
+      PHP_EXTENSIONS: "pdo_mysql"
+networks:
+  user-network:
+    driver: bridge
